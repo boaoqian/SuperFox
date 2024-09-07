@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnpxvu7p78nc7"]
+
+[ext_resource type="PackedScene" uid="uid://dur00712igc8o" path="res://Item/cherry.tscn" id="1_t1q4o"]
+[ext_resource type="Texture2D" uid="uid://djs0pvnes2cdn" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/spritesheets/gem.png" id="2_4q7ak"]
+[ext_resource type="Texture2D" uid="uid://bi374tpdq2bo0" path="res://res/pointlight.webp" id="3_6q6ku"]
+
+[sub_resource type="GDScript" id="GDScript_cassw"]
+script/source = "extends Area2D
+var ok=1# Called when the node enters the scene tree for the first time.
+var value = 1
+func _ready():
+	get_node(\"AnimatedSprite2D\").play(\"idle\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_body_entered(body):
+	if body.name==\"player\" and ok:
+		ok = 0
+		Game.Player_Gold += value
+		var tween = get_tree().create_tween()
+		tween.tween_property(self,\"position\",Vector2(0,-50)+position,0.5)
+		tween.tween_property(self,\"modulate:a\",0,0.5)
+		tween.tween_callback(queue_free)
+
+
+func _on_timer_timeout():
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4446l"]
+radius = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t36oa"]
+atlas = ExtResource("2_4q7ak")
+region = Rect2(0, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng2ru"]
+atlas = ExtResource("2_4q7ak")
+region = Rect2(15, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiah7"]
+atlas = ExtResource("2_4q7ak")
+region = Rect2(30, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo1e8"]
+atlas = ExtResource("2_4q7ak")
+region = Rect2(45, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klwjc"]
+atlas = ExtResource("2_4q7ak")
+region = Rect2(60, 0, 15, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdjm5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t36oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng2ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiah7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo1e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klwjc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="gem" instance=ExtResource("1_t1q4o")]
+script = SubResource("GDScript_cassw")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_4446l")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_wdjm5")
+frame_progress = 0.0
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="3"]
+color = Color(0.737748, 0.526851, 1, 1)
+energy = 0.83
+texture = ExtResource("3_6q6ku")
+texture_scale = 0.27
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

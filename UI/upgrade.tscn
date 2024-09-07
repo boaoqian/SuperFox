@@ -1,0 +1,136 @@
+[gd_scene load_steps=4 format=3 uid="uid://j3psdis8kbvj"]
+
+[ext_resource type="Theme" uid="uid://84o6cyre6bcl" path="res://Global/mystyles.tres" id="1_qwwyv"]
+
+[sub_resource type="GDScript" id="GDScript_urpl8"]
+script/source = "extends Control
+var skills;
+var buttons
+var skills_name
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.visible = false
+	var script = load(\"res://player/skills.gd\")
+	buttons = $Panel/button.get_children()
+	skills = Node.new()
+	skills.set_script(script)
+
+func upgrade(level = 0):
+	skills_name = skills.skills[level].keys()
+	skills_name.shuffle()
+	for i in range(3):
+		buttons[i].text=skills.skills[level][skills_name[i]][1]
+
+
+func _on_button_3_pressed():
+	skills.skills[0][skills_name[2]][0].call($\"../../Player/player\")
+	self.visible = 0
+	get_tree().paused = 0
+
+func _on_button_2_pressed():
+	skills.skills[0][skills_name[1]][0].call($\"../../Player/player\")
+	self.visible = 0
+	get_tree().paused = 0
+
+func _on_button_pressed():
+	skills.skills[0][skills_name[0]][0].call($\"../../Player/player\")
+	self.visible = 0
+	get_tree().paused = 0
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4y72"]
+font_size = 30
+font_color = Color(0.992157, 0.92549, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.811765, 0.192157, 0.313726, 0.866667)
+
+[node name="UPGRADE" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_urpl8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -144.0
+offset_right = 288.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qwwyv")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -109.0
+offset_right = 68.5
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LeveL up!"
+label_settings = SubResource("LabelSettings_x4y72")
+
+[node name="button" type="Node2D" parent="Panel"]
+
+[node name="Button" type="Button" parent="Panel/button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = 108.0
+offset_right = 144.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qwwyv")
+autowrap_mode = 3
+
+[node name="Button2" type="Button" parent="Panel/button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 444.0
+offset_top = 108.0
+offset_right = 544.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qwwyv")
+autowrap_mode = 3
+
+[node name="Button3" type="Button" parent="Panel/button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = 108.0
+offset_right = 344.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qwwyv")
+autowrap_mode = 3
+
+[connection signal="pressed" from="Panel/button/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/button/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/button/Button3" to="." method="_on_button_3_pressed"]

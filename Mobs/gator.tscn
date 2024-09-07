@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=3 uid="uid://u1ty2vn0vi8v"]
+
+[ext_resource type="Script" path="res://Mobs/gator.gd" id="1_c2ubt"]
+[ext_resource type="Texture2D" uid="uid://0nbucykwd8bu" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Woods Pack/SPRITES/enemies/gator/gator-sheet.png" id="3_hahbm"]
+[ext_resource type="Texture2D" uid="uid://cg23hnht1gcgv" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/spritesheets/enemy-deadth.png" id="12_3vykt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0kkr8"]
+radius = 12.0026
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o54l3"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rvas"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4350"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv7no"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1isxe"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(160, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lpwl"]
+atlas = ExtResource("12_3vykt")
+region = Rect2(200, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1e16"]
+atlas = ExtResource("3_hahbm")
+region = Rect2(0, 0, 46, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffloq"]
+atlas = ExtResource("3_hahbm")
+region = Rect2(46, 0, 46, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx8n7"]
+atlas = ExtResource("3_hahbm")
+region = Rect2(92, 0, 46, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r77ev"]
+atlas = ExtResource("3_hahbm")
+region = Rect2(138, 0, 46, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k846o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o54l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rvas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4350")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv7no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1isxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lpwl")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1e16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffloq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx8n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r77ev")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbf8u"]
+radius = 398.031
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8b1rq"]
+radius = 16.002
+
+[node name="gator" type="CharacterBody2D"]
+script = ExtResource("1_c2ubt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.75)
+shape = SubResource("CircleShape2D_0kkr8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -5)
+sprite_frames = SubResource("SpriteFrames_k846o")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.0298028
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_cbf8u")
+
+[node name="Hurt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt"]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_8b1rq")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="proof_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Shoot_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="Hurt" to="." method="_on_hurt_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="proof_timer" to="." method="_on_proof_timer_timeout"]
+[connection signal="timeout" from="Shoot_timer" to="." method="_on_shoot_timer_timeout"]

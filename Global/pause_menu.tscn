@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdjysi5nsvtc2"]
+
+[ext_resource type="Script" path="res://Global/pause_menu.gd" id="1_17dmy"]
+[ext_resource type="Theme" uid="uid://84o6cyre6bcl" path="res://Global/mystyles.tres" id="1_vcstw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ar5dr"]
+font_size = 25
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_17dmy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vcstw")
+
+[node name="goon" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -20.0
+offset_right = 76.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vcstw")
+text = "Continue"
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 36.0
+offset_right = 76.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vcstw")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -123.0
+offset_right = 73.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_ar5dr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="goon" to="." method="_on_goon_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

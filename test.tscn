@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm7vcinxtobrn"]
+
+[ext_resource type="PackedScene" uid="uid://wm01c0bs85j7" path="res://player/Player.tscn" id="1_w0nmt"]
+[ext_resource type="PackedScene" uid="uid://dur00712igc8o" path="res://Item/cherry.tscn" id="3_bbcx8"]
+
+[sub_resource type="GDScript" id="GDScript_ycshj"]
+script/source = "extends Node2D
+var proof = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11qnl"]
+size = Vector2(150.5, 758)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neoxn"]
+size = Vector2(1596, 79)
+
+[sub_resource type="GDScript" id="GDScript_p1w77"]
+script/source = "extends Node2D
+
+var max_emery = 10
+var pos = [Vector2(992,312),Vector2(1048,312),Vector2(1900,400)]
+var mr = preload(\"res://Mobs/mushroom.tscn\")
+
+#func _on_timer_timeout():
+	#if Game.gen_emery:
+		#$Timer.wait_time=randf_range(1,10)
+		#var i = randi_range(0,pos.size()-1)
+		#if len($Mobs.get_children())<max_emery:
+			#var mr = mr.instantiate()
+			#mr.position = pos[i]
+			#$Mobs.add_child(mr)
+"
+
+[sub_resource type="GDScript" id="GDScript_5inuf"]
+script/source = "extends Node2D
+
+var collect
+var pos = [Vector2(992,408),Vector2(1312,376),Vector2(1600,448),Vector2(464,500)]
+var charry = preload(\"res://Item/cherry.tscn\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	collect=$Collections
+	 # Replace with function body.
+
+func _on_timer_timeout():
+	$Timer.wait_time=randf_range(15,20.0)
+	var i = randi_range(0,pos.size()-1)
+	for id in collect.get_children():
+		if id.position == pos[i]:
+			return
+	var new_charry = charry.instantiate()
+	new_charry.position = pos[i]
+	collect.add_child(new_charry)
+"
+
+[node name="test" type="Node2D"]
+script = SubResource("GDScript_ycshj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1453, 239)
+shape = SubResource("RectangleShape2D_11qnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(672, 597)
+shape = SubResource("RectangleShape2D_neoxn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-60, 186)
+shape = SubResource("RectangleShape2D_11qnl")
+
+[node name="Player" type="Node2D" parent="."]
+visibility_layer = 4
+
+[node name="player" parent="Player" instance=ExtResource("1_w0nmt")]
+visibility_layer = 4
+position = Vector2(288, 453)
+
+[node name="Mobs" type="Node2D" parent="."]
+script = SubResource("GDScript_p1w77")
+
+[node name="Timer" type="Timer" parent="Mobs"]
+wait_time = 4096.0
+autostart = true
+
+[node name="Mobs" type="Node2D" parent="Mobs"]
+
+[node name="collect" type="Node2D" parent="."]
+script = SubResource("GDScript_5inuf")
+
+[node name="Timer" type="Timer" parent="collect"]
+autostart = true
+
+[node name="Collections" type="Node2D" parent="collect"]
+
+[node name="cherry" parent="collect/Collections" instance=ExtResource("3_bbcx8")]
+
+[connection signal="timeout" from="Mobs/Timer" to="Mobs" method="_on_timer_timeout"]
+[connection signal="timeout" from="collect/Timer" to="collect" method="_on_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfrfnc5xwwlc"]
+
+[ext_resource type="Texture2D" uid="uid://cmnrt23ch4i87" path="res://res/bullet.png" id="1_nsiyd"]
+[ext_resource type="Script" path="res://player/bullet.gd" id="1_v3fou"]
+[ext_resource type="Texture2D" uid="uid://bi374tpdq2bo0" path="res://res/pointlight.webp" id="3_f4vu6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8jkyk"]
+radius = 2.0
+height = 24.0
+
+[node name="bullet" type="Area2D"]
+script = ExtResource("1_v3fou")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.999998, 0)
+scale = Vector2(0.515625, 1)
+color = Color(0.988235, 1, 0.0196078, 1)
+energy = 0.5
+range_layer_min = -1
+range_layer_max = 1
+texture = ExtResource("3_f4vu6")
+texture_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8jkyk")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+texture = ExtResource("1_nsiyd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

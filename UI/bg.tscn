@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxy5wlgt6wdrf"]
+
+[ext_resource type="Texture2D" uid="uid://cgv5a13met8de" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_3rgre"]
+[ext_resource type="Script" path="res://UI/bg.gd" id="1_i50s1"]
+[ext_resource type="Texture2D" uid="uid://dhd1d5amxnftr" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/middle.png" id="2_mkt8f"]
+[ext_resource type="Texture2D" uid="uid://c2m5yfu08tuuv" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/front.png" id="3_te8ma"]
+
+[node name="forest_bg" type="ParallaxBackground"]
+script = ExtResource("1_i50s1")
+
+[node name="back" type="ParallaxLayer" parent="."]
+position = Vector2(0, -184)
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1662, 0)
+metadata/_edit_group_ = true
+
+[node name="Back" type="Sprite2D" parent="back"]
+position = Vector2(833.001, 496)
+scale = Vector2(2.88541, 3.66176)
+texture = ExtResource("1_3rgre")
+
+[node name="mid" type="ParallaxLayer" parent="."]
+position = Vector2(-8, -88)
+motion_mirroring = Vector2(1407, 0)
+metadata/_edit_group_ = true
+
+[node name="Middle" type="Sprite2D" parent="mid"]
+position = Vector2(710, 440)
+scale = Vector2(2.45139, 3.23529)
+texture = ExtResource("2_mkt8f")
+
+[node name="front" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.3, 1.3)
+motion_mirroring = Vector2(1376, 0)
+metadata/_edit_group_ = true
+
+[node name="Front" type="Sprite2D" parent="front"]
+position = Vector2(688, 324)
+scale = Vector2(2.38889, 2.38235)
+texture = ExtResource("3_te8ma")
