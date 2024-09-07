@@ -311,7 +311,7 @@ func _physics_process(delta):
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(0, 509)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 script = ExtResource("1_j8omv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

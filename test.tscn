@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm7vcinxtobrn"]
+[gd_scene load_steps=9 format=3 uid="uid://cm7vcinxtobrn"]
 
 [ext_resource type="PackedScene" uid="uid://wm01c0bs85j7" path="res://player/Player.tscn" id="1_w0nmt"]
+[ext_resource type="PackedScene" uid="uid://u1ty2vn0vi8v" path="res://Mobs/gator.tscn" id="2_q8pmr"]
 [ext_resource type="PackedScene" uid="uid://dur00712igc8o" path="res://Item/cherry.tscn" id="3_bbcx8"]
 
 [sub_resource type="GDScript" id="GDScript_ycshj"]
@@ -95,6 +96,9 @@ autostart = true
 
 [node name="Mobs" type="Node2D" parent="Mobs"]
 
+[node name="gator" parent="Mobs/Mobs" instance=ExtResource("2_q8pmr")]
+position = Vector2(276.46, 194.746)
+
 [node name="collect" type="Node2D" parent="."]
 script = SubResource("GDScript_5inuf")
 
@@ -104,6 +108,7 @@ autostart = true
 [node name="Collections" type="Node2D" parent="collect"]
 
 [node name="cherry" parent="collect/Collections" instance=ExtResource("3_bbcx8")]
+position = Vector2(775, 472)
 
 [connection signal="timeout" from="Mobs/Timer" to="Mobs" method="_on_timer_timeout"]
 [connection signal="timeout" from="collect/Timer" to="collect" method="_on_timer_timeout"]

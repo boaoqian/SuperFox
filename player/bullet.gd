@@ -1,5 +1,5 @@
 extends Area2D
-const SPEED = 1500
+const SPEED = 600
 @onready var DAMAGE = $"../..".damage
 var hurt_player = 0
 var m = 0.1

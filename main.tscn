@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpvyrsw33v4l"]
+[gd_scene load_steps=2 format=3 uid="uid://cpvyrsw33v4l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0jrko"]
-[ext_resource type="PackedScene" uid="uid://dxy5wlgt6wdrf" path="res://UI/bg.tscn" id="2_mnbok"]
 
 [node name="main" type="Node2D"]
 process_mode = 3
@@ -23,8 +22,6 @@ offset_bottom = 296.0
 size_flags_horizontal = 6
 disabled = true
 text = "Start"
-
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_mnbok")]
 
 [connection signal="button_down" from="quit" to="." method="_on_quit_button_down"]
 [connection signal="button_down" from="start" to="." method="_on_start_button_down"]

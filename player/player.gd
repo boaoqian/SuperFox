@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@export var cam_zoom = [1.5,1.7]
+@export var cam_zoom = [1.2,1.5]
 var health = Game.Player_health
 var alive = 1
 var base_damage = 0
@@ -7,7 +7,7 @@ var base_shoot_speed=0
 var back_scale=0.5
 var proof = 0
 const SPEED = 300.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -500.0
 var A = 400
 var on_stair = 0
 var step_stair_high = 8
