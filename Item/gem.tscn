@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dnpxvu7p78nc7"]
 
 [ext_resource type="PackedScene" uid="uid://dur00712igc8o" path="res://Item/cherry.tscn" id="1_t1q4o"]
-[ext_resource type="Texture2D" uid="uid://djs0pvnes2cdn" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/spritesheets/gem.png" id="2_4q7ak"]
+[ext_resource type="Texture2D" uid="uid://djrmosvr3bkcd" path="res://res/gem.png" id="2_4q7ak"]
 [ext_resource type="Texture2D" uid="uid://bi374tpdq2bo0" path="res://res/pointlight.webp" id="3_6q6ku"]
 
 [sub_resource type="GDScript" id="GDScript_cassw"]

@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_ycshj"]
 script/source = "extends Node2D
 var proof = 0
-
+var limit = [-1000,1000,-1000,1000]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

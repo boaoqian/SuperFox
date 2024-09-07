@@ -15,7 +15,7 @@ var tween
 @onready var anim = get_node("AnimationPlayer")
 
 func _ready():
-	self.floor_block_on_wall=true
+	self.floor_block_on_wall=false
 	self.floor_max_angle=PI/4
 	$Camera2D.zoom = Vector2(cam_zoom[0],cam_zoom[0])
 	$Camera2D.limit_left=$"../..".limit[0]

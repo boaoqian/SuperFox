@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://u1ty2vn0vi8v"]
 
 [ext_resource type="Script" path="res://Mobs/gator.gd" id="1_c2ubt"]
-[ext_resource type="Texture2D" uid="uid://0nbucykwd8bu" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Woods Pack/SPRITES/enemies/gator/gator-sheet.png" id="3_hahbm"]
-[ext_resource type="Texture2D" uid="uid://cg23hnht1gcgv" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/spritesheets/enemy-deadth.png" id="12_3vykt"]
+[ext_resource type="Texture2D" uid="uid://gqo60yaooroi" path="res://res/gator-sheet.png" id="3_hahbm"]
+[ext_resource type="Texture2D" uid="uid://w8y2vlmc8546" path="res://res/enemy-deadth.png" id="12_3vykt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0kkr8"]
 radius = 12.0026

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://buejs86wgrpbd" path="res://res/player.png" id="1_3euie"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_j8omv"]
-[ext_resource type="PackedScene" uid="uid://c27e0n41du2id" path="res://player/firemagic.tscn" id="3_q5qsw"]
+[ext_resource type="PackedScene" uid="uid://cfk527gicnkd7" path="res://player/magicwood.tscn" id="3_2p84j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34ltd"]
 radius = 8.0
@@ -338,9 +338,7 @@ speed_scale = 0.778
 
 [node name="Equipment" type="Node2D" parent="."]
 
-[node name="Firemagic" parent="Equipment" instance=ExtResource("3_q5qsw")]
-position = Vector2(0, 7)
-scale = Vector2(0.5, 0.5)
+[node name="Magicwood" parent="Equipment" instance=ExtResource("3_2p84j")]
 
 [node name="proof_time" type="Timer" parent="."]
 wait_time = 0.5

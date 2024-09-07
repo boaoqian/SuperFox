@@ -3,7 +3,6 @@ const SPEED = 1500
 @onready var DAMAGE = $"../..".damage
 var hurt_player = 0
 var m = 0.1
-var b = PI/2
 var direction = Vector2(1,0)
 func _process(delta):
 	if load:

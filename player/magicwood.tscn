@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfk527gicnkd7"]
+
+[ext_resource type="Script" path="res://player/magicwood.gd" id="1_vbmpd"]
+[ext_resource type="Texture2D" uid="uid://cldhjvty0muxf" path="res://res/magicwood.png" id="2_6nxu4"]
+
+[node name="Magicwood" type="Node2D"]
+rotation = -0.191986
+script = ExtResource("1_vbmpd")
+
+[node name="Magicwood" type="Sprite2D" parent="."]
+position = Vector2(0, -23)
+texture = ExtResource("2_6nxu4")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

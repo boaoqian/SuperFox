@@ -1,7 +1,5 @@
 [gd_resource type="TileSet" load_steps=62 format=3 uid="uid://p0l8bswjcpel"]
 
-[ext_resource type="Texture2D" uid="uid://xmbm4gs5pbfg" path="res://sunny-land-phaser-project/sunny-land/assets/environment/tileset.png" id="1_wr3mr"]
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dh151"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
@@ -179,8 +177,11 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yj71m"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6c6qf"]
+load_path = "res://.godot/imported/tileset.png-7edb9fa015f94d474b2b2b5f2b9e1887.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0eif"]
-texture = ExtResource("1_wr3mr")
+texture = SubResource("CompressedTexture2D_6c6qf")
 1:1/0 = 0
 1:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7xh7a")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
