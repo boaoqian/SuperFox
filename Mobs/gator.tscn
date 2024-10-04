@@ -131,7 +131,7 @@ wait_time = 0.2
 wait_time = 3.0
 autostart = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node" parent="."]
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

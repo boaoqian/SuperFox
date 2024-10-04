@@ -104,7 +104,7 @@ func hurt(damage,back_velocity):
 	if HP<=0:
 		HP=100
 		proof=1
-		gem.position = position
+		gem.global_position = global_position
 		$"../../../collect/Collections".add_child(gem)
 		Game.exp+=exp
 		death()

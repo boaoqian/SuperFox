@@ -97,7 +97,7 @@ func hurt(damage,back_velocity):
 	if HP<=0:
 		HP=100
 		proof=1
-		gem.position = position
+		gem.global_position = global_position
 		$"../../../collect/Collections".add_child(gem)
 		Game.exp+=exp
 		death()
@@ -119,6 +119,7 @@ func _on_proof_timer_timeout():
 func _on_shoot_timer_timeout():
 	if hunting and player:
 		var temp = bullet.instantiate()
+		temp.global_position = global_position
 		temp.player = player
 		temp.direction = direction
 		temp.m*=scale.length()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=115 format=4 uid="uid://ctiegcmt45iub"]
+[gd_scene load_steps=116 format=4 uid="uid://ctiegcmt45iub"]
 
 [ext_resource type="PackedScene" uid="uid://wm01c0bs85j7" path="res://player/Player.tscn" id="1_xrrqn"]
+[ext_resource type="PackedScene" uid="uid://dnpxvu7p78nc7" path="res://Item/gem.tscn" id="2_5hxjd"]
 [ext_resource type="Texture2D" uid="uid://cr84t5gh2trwv" path="res://res/Mossy Tileset/Mossy - TileSet.png" id="5_em7mh"]
 [ext_resource type="Texture2D" uid="uid://bi374tpdq2bo0" path="res://res/pointlight.webp" id="5_okvy3"]
 [ext_resource type="Texture2D" uid="uid://tsinv64mdb1b" path="res://res/earth.png" id="7_hd5bx"]
@@ -58,7 +59,8 @@ func _on_proof_pressed():
 func _on_timer_exit_timeout():
 	$Exit.visible=1
 	game_finish = 1
-	for i in $Mobs.get_children():
+	Game.gen_emery=0
+	for i in $Mobs/Mobs.get_children():
 		i.death()
 	await get_tree().create_timer(1).timeout
 	
@@ -66,7 +68,7 @@ func _on_timer_exit_timeout():
 func _on_exit_body_entered(body):
 	if game_finish:
 		var tween = get_tree().create_tween()
-		player.visable=0
+		player.visable=false
 		tween.tween_property($UI/Exit,\"modulate:a\",1,1)
 		tween.tween_callback(get_tree().change_scene_to_file.bind(next))
 "
@@ -1772,6 +1774,9 @@ autostart = true
 
 [node name="Collections" type="Node2D" parent="collect"]
 
+[node name="gem" parent="collect/Collections" instance=ExtResource("2_5hxjd")]
+position = Vector2(885.494, -243.616)
+
 [node name="position" type="Node" parent="collect"]
 
 [node name="Node2D" type="Node2D" parent="collect/position"]
@@ -1787,6 +1792,7 @@ position = Vector2(356.01, -364.769)
 position = Vector2(898.997, -563.744)
 
 [node name="Mobs" type="Node2D" parent="."]
+scale = Vector2(1.5, 1.5)
 script = SubResource("GDScript_y8iq5")
 
 [node name="Timer" type="Timer" parent="Mobs"]
